@@ -55,6 +55,15 @@ const Table = () => {
             </button>
       </div>
       <div>
+      <div className="border-2 border-black">
+      <ul className="grid grid-cols-8 justify-center space-x-8 items-center">
+        <li className='w-auto  '>ID</li>
+        <li className="h-full col-span-3 border-l-4 ">PRODUTOS</li>
+        <li className=" border-l-4 ">Quantidade Atual</li>
+        <li className=" border-l-4 ">Quantidade Existente</li>
+        <li className="h-full border-l-4 ">Motivos</li>
+      </ul>
+    </div>
         {console.log("Tabela Produtos: "+JSON.stringify(produtos))}
         {produtos.map( item => { return <Item key={item.id} produto={item} disable={editar} setProdutos={setProdutos}/> } )}
         

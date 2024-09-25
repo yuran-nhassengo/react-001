@@ -12,7 +12,7 @@ const Item = ({disable,setProdutos, produto:{id,name,qt,qa,motivo} }) => {
             return produtos.map((produto) =>{
               console.log("current Produto id: "+produto+ " id "+id)
               if(produto.id == id)
-                return {...produto,qa:qAtual}
+                return {...produto,qt:qAtual,qa:qAtual}
               else return produto
             })
           });
