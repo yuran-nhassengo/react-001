@@ -5,47 +5,58 @@ const Table = () => {
 
     const [editar,setEditar] = useState(false);
 
-    const produtos = [
+    const [produtos,setProdutos] = useState([
         {
           id:1,
           name:"Bernina",
-          qt:10,
-          qa:10,
+          qt:11,
+          qa:11,
           motivo:""
         },
         {
-          id:1,
+          id:2,
           name:"2M Lata",
-          qt:10,
-          qa:10,
+          qt:17,
+          qa:17,
           motivo:""
         },
         {
-          id:1,
+          id:3,
           name:"Heineken Mini",
-          qt:10,
-          qa:10,
+          qt:21,
+          qa:21,
           motivo:""
         },
         {
-          id:1,
+          id:4,
           name:"Castle Lite",
-          qt:10,
-          qa:10,
+          qt:24,
+          qa:24,
           motivo:""
         },
-    ]
+    ])
+
+    const handleEditar = ()=>{
+        
+        if(!editar){
+
+         alert("Produtos Alterados com Sucesso!")
+        };
+        
+        setEditar(!editar);
+    
+    }
 
   return (
     <div>
       <div className='flex justify-center items-start'>
-            <button onClick={()=>setEditar(!editar)} className='w-auto border-2 px-2 text-white border-blue-300 bg-blue-400 rounded'>
+            <button onClick={handleEditar} className='w-auto border-2 px-2 text-white border-blue-300 bg-blue-400 rounded'>
                 {editar?"Editar":"Salvar"}
             </button>
       </div>
       <div>
-
-        {produtos.map( item => { return <Item produto={item} disable={editar}/> } )}
+        {console.log("Tabela Produtos: "+JSON.stringify(produtos))}
+        {produtos.map( item => { return <Item key={item.id} produto={item} disable={editar} setProdutos={setProdutos}/> } )}
         
         
       </div>

@@ -1,8 +1,22 @@
 import React, { useState } from 'react'
 
-const Item = ({disable, produto:{id,name,qt,qa,motivo} }) => {
+const Item = ({disable,setProdutos, produto:{id,name,qt,qa,motivo} }) => {
 
-        const [qAtual,setQAtual] = useState(qa)
+        const [qAtual,setQAtual] = useState(qa);
+
+        const handleQuantity = () =>{
+          console.log("Id: "+id+" Quantidade Atualizada: "+qAtual);
+          //setQAtual(e.target.value);
+          setProdutos((produtos) => {
+            console.log("current Produtos: "+produtos)
+            return produtos.map((produto) =>{
+              console.log("current Produto id: "+produto+ " id "+id)
+              if(produto.id == id)
+                return {...produto,qa:qAtual}
+              else return produto
+            })
+          });
+        }
 
   return (
     <div className="border-2 border-black">
@@ -13,8 +27,8 @@ const Item = ({disable, produto:{id,name,qt,qa,motivo} }) => {
             {qt}
         </li>
         <li >
-            <input onChange={(e)=>setQAtual(e.target.value)} className={`border-l-4  w-full ${!disable ? "hover:border-blue-700" : ""}`} 
-            disabled={disable} type="text" value={qAtual} placeholder="Quantidade Existente" />
+            <input onChange={(e)=>setQAtual(e.target.value)} onBlur={handleQuantity} className={`border-l-4  w-full ${!disable ? "hover:border-blue-700" : ""}`} 
+            disabled={disable} type="number" value={qAtual} placeholder="Quantidade Existente" />
         </li>
         <li className="border-l-4 w-full justify-center items-center">
             <select className=' justify-center items-center' disabled={disable} name="" id="">
